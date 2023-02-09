@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { TodoList } from '../components/TodoList/TodoList';
 import useFetch from '../hooks/useFetch';
-import Header from '../Layout/Header';
-import Main from '../Layout/Main';
+import Header from '../components/Layout/Header';
+import Main from '../components/Layout/Main';
 
 const Wrapper = styled.div`
   min-width: 375px;
