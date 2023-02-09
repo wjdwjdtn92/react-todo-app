@@ -39,8 +39,6 @@ interface IHeader {
 }
 
 function Header({ date, handleNextClick, handlePrevClick }: IHeader) {
-  const today = new Date().toLocaleDateString().slice(0, -1);
-
   return (
     <Container>
       <PrevButton onClick={handlePrevClick} />
