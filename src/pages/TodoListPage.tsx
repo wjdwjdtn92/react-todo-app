@@ -5,6 +5,7 @@ import { TodoList } from '../components/TodoList/TodoList';
 import useFetch from '../hooks/useFetch';
 import Header from '../components/Layout/Header';
 import Main from '../components/Layout/Main';
+import TodoForm from '../components/TodoList/TodoForm';
 
 const Wrapper = styled.div`
   min-width: 375px;
@@ -57,6 +58,34 @@ function TodoListPage() {
     setData([...newData]);
   };
 
+  const handleSubmit = (title: string, content: string) => {
+    const sendData = {
+      title,
+      content,
+      date,
+      isComplete: false,
+    };
+
+    fetch('http://localhost:3001/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(sendData),
+    })
+      .then(res => {
+        if (!res.ok) {
+          // error coming back from server
+          throw Error('could not fetch the data for that resource');
+        }
+        return res.json();
+      })
+      .then(jsonData => setData(preState => [...preState, jsonData]))
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <Wrapper>
       <Header
@@ -65,7 +94,10 @@ function TodoListPage() {
         handlePrevClick={handlePrev}
       />
       <Main>
-        {data && <TodoList handleCompleted={handleCompleted} todos={data} />}
+        <TodoForm handleSubmit={handleSubmit} />
+        {data.length > 0 && (
+          <TodoList handleCompleted={handleCompleted} todos={data} />
+        )}
       </Main>
     </Wrapper>
   );
