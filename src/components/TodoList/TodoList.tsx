@@ -1,6 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ITodoItem, TodoItem } from './TodoItem';
+import React from "react";
+import styled from "styled-components";
+
+import { ITodoItem, TodoItem } from "./TodoItem";
 
 const Container = styled.ul`
   width: 100%;
@@ -8,7 +9,7 @@ const Container = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 16px;
+
   gap: 16px;
 `;
 
